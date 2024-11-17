@@ -13,13 +13,19 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+import 'google/protobuf/timestamp.pb.dart' as $1;
+import 'organization.pb.dart' as $2;
+import 'profile.pbenum.dart';
+
+export 'profile.pbenum.dart';
+
 class GetProfileRequest extends $pb.GeneratedMessage {
   factory GetProfileRequest() => create();
   GetProfileRequest._() : super();
   factory GetProfileRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory GetProfileRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetProfileRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'profile.v1'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetProfileRequest', createEmptyInstance: create)
     ..hasRequiredFields = false
   ;
 
@@ -59,7 +65,7 @@ class GetProfileResponse extends $pb.GeneratedMessage {
   factory GetProfileResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory GetProfileResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetProfileResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'profile.v1'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetProfileResponse', createEmptyInstance: create)
     ..aOM<ProfileModel>(1, _omitFieldNames ? '' : 'profile', subBuilder: ProfileModel.create)
     ..hasRequiredFields = false
   ;
@@ -111,7 +117,7 @@ class UpdateProfileRequest extends $pb.GeneratedMessage {
   factory UpdateProfileRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UpdateProfileRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateProfileRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'profile.v1'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateProfileRequest', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'name')
     ..hasRequiredFields = false
   ;
@@ -161,7 +167,7 @@ class UpdateProfileResponse extends $pb.GeneratedMessage {
   factory UpdateProfileResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory UpdateProfileResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateProfileResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'profile.v1'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UpdateProfileResponse', createEmptyInstance: create)
     ..aOM<ProfileModel>(1, _omitFieldNames ? '' : 'profile', subBuilder: ProfileModel.create)
     ..hasRequiredFields = false
   ;
@@ -202,14 +208,38 @@ class UpdateProfileResponse extends $pb.GeneratedMessage {
 class ProfileModel extends $pb.GeneratedMessage {
   factory ProfileModel({
     $core.String? id,
+    $1.Timestamp? createdAt,
     $core.String? name,
+    $core.String? email,
+    $core.String? phone,
+    $core.bool? isSuperUser,
+    RoleType? role,
+    $core.Iterable<$2.OrganizationModel>? organizations,
   }) {
     final $result = create();
     if (id != null) {
       $result.id = id;
     }
+    if (createdAt != null) {
+      $result.createdAt = createdAt;
+    }
     if (name != null) {
       $result.name = name;
+    }
+    if (email != null) {
+      $result.email = email;
+    }
+    if (phone != null) {
+      $result.phone = phone;
+    }
+    if (isSuperUser != null) {
+      $result.isSuperUser = isSuperUser;
+    }
+    if (role != null) {
+      $result.role = role;
+    }
+    if (organizations != null) {
+      $result.organizations.addAll(organizations);
     }
     return $result;
   }
@@ -217,9 +247,15 @@ class ProfileModel extends $pb.GeneratedMessage {
   factory ProfileModel.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory ProfileModel.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProfileModel', package: const $pb.PackageName(_omitMessageNames ? '' : 'profile.v1'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ProfileModel', createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'id')
-    ..aOS(2, _omitFieldNames ? '' : 'name')
+    ..aOM<$1.Timestamp>(2, _omitFieldNames ? '' : 'createdAt', subBuilder: $1.Timestamp.create)
+    ..aOS(3, _omitFieldNames ? '' : 'name')
+    ..aOS(4, _omitFieldNames ? '' : 'email')
+    ..aOS(5, _omitFieldNames ? '' : 'phone')
+    ..aOB(6, _omitFieldNames ? '' : 'isSuperUser')
+    ..e<RoleType>(7, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: RoleType.ROLE_TYPE_UNSPECIFIED, valueOf: RoleType.valueOf, enumValues: RoleType.values)
+    ..pc<$2.OrganizationModel>(8, _omitFieldNames ? '' : 'organizations', $pb.PbFieldType.PM, subBuilder: $2.OrganizationModel.create)
     ..hasRequiredFields = false
   ;
 
@@ -254,13 +290,63 @@ class ProfileModel extends $pb.GeneratedMessage {
   void clearId() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get name => $_getSZ(1);
+  $1.Timestamp get createdAt => $_getN(1);
   @$pb.TagNumber(2)
-  set name($core.String v) { $_setString(1, v); }
+  set createdAt($1.Timestamp v) { setField(2, v); }
   @$pb.TagNumber(2)
-  $core.bool hasName() => $_has(1);
+  $core.bool hasCreatedAt() => $_has(1);
   @$pb.TagNumber(2)
-  void clearName() => clearField(2);
+  void clearCreatedAt() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.Timestamp ensureCreatedAt() => $_ensure(1);
+
+  @$pb.TagNumber(3)
+  $core.String get name => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set name($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasName() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearName() => clearField(3);
+
+  @$pb.TagNumber(4)
+  $core.String get email => $_getSZ(3);
+  @$pb.TagNumber(4)
+  set email($core.String v) { $_setString(3, v); }
+  @$pb.TagNumber(4)
+  $core.bool hasEmail() => $_has(3);
+  @$pb.TagNumber(4)
+  void clearEmail() => clearField(4);
+
+  @$pb.TagNumber(5)
+  $core.String get phone => $_getSZ(4);
+  @$pb.TagNumber(5)
+  set phone($core.String v) { $_setString(4, v); }
+  @$pb.TagNumber(5)
+  $core.bool hasPhone() => $_has(4);
+  @$pb.TagNumber(5)
+  void clearPhone() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $core.bool get isSuperUser => $_getBF(5);
+  @$pb.TagNumber(6)
+  set isSuperUser($core.bool v) { $_setBool(5, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasIsSuperUser() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearIsSuperUser() => clearField(6);
+
+  @$pb.TagNumber(7)
+  RoleType get role => $_getN(6);
+  @$pb.TagNumber(7)
+  set role(RoleType v) { setField(7, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasRole() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearRole() => clearField(7);
+
+  @$pb.TagNumber(8)
+  $core.List<$2.OrganizationModel> get organizations => $_getList(7);
 }
 
 

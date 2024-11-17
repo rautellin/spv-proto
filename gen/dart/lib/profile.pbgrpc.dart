@@ -19,14 +19,14 @@ import 'profile.pb.dart' as $0;
 
 export 'profile.pb.dart';
 
-@$pb.GrpcServiceName('profile.v1.ProfileService')
+@$pb.GrpcServiceName('ProfileService')
 class ProfileServiceClient extends $grpc.Client {
   static final _$getProfile = $grpc.ClientMethod<$0.GetProfileRequest, $0.GetProfileResponse>(
-      '/profile.v1.ProfileService/GetProfile',
+      '/ProfileService/GetProfile',
       ($0.GetProfileRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.GetProfileResponse.fromBuffer(value));
   static final _$updateProfile = $grpc.ClientMethod<$0.UpdateProfileRequest, $0.UpdateProfileResponse>(
-      '/profile.v1.ProfileService/UpdateProfile',
+      '/ProfileService/UpdateProfile',
       ($0.UpdateProfileRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.UpdateProfileResponse.fromBuffer(value));
 
@@ -45,9 +45,9 @@ class ProfileServiceClient extends $grpc.Client {
   }
 }
 
-@$pb.GrpcServiceName('profile.v1.ProfileService')
+@$pb.GrpcServiceName('ProfileService')
 abstract class ProfileServiceBase extends $grpc.Service {
-  $core.String get $name => 'profile.v1.ProfileService';
+  $core.String get $name => 'ProfileService';
 
   ProfileServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.GetProfileRequest, $0.GetProfileResponse>(
