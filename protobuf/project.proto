@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
+
+import "google/protobuf/timestamp.proto";
+
+service ProjectService {
+   rpc GetProjects(GetProjectsRequest) returns (GetProjectsResponse);
+}
+
+message GetProjectsRequest {
+   optional string user_id = 1;
+}
+
+message GetProjectsResponse {
+   repeated ProjectModel projects = 1;
+}
+
+/// --- DATA TYPES --- ///
+
+message ProjectModel {
+   int64 id = 1;
+   google.protobuf.Timestamp created_at = 2;
+   optional google.protobuf.Timestamp updated_at = 3;
+   optional google.protobuf.Timestamp deleted_at = 4;
+   optional string name = 5;
+   optional string description = 6;
+   optional float latitude = 7;
+   optional float longitude = 8;
+   optional google.protobuf.Timestamp start_date = 9;
+   optional google.protobuf.Timestamp end_date = 10;
+}
+
+
+
