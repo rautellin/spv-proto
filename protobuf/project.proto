@@ -3,9 +3,11 @@ syntax = "proto3";
 option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
 
 import "google/protobuf/timestamp.proto";
+import "organization.proto";
 
 service ProjectService {
    rpc GetProjects(GetProjectsRequest) returns (GetProjectsResponse);
+    rpc GetProject(GetProjectRequest) returns (GetProjectResponse);
 }
 
 message GetProjectsRequest {
@@ -14,6 +16,15 @@ message GetProjectsRequest {
 
 message GetProjectsResponse {
    repeated ProjectModel projects = 1;
+}
+
+message GetProjectRequest {
+   int64 id = 1;
+}
+
+message GetProjectResponse {
+   ProjectModel project = 1;
+   OrganizationModel organization = 2;
 }
 
 /// --- DATA TYPES --- ///
