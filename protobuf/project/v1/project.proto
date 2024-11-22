@@ -1,9 +1,11 @@
 syntax = "proto3";
 
-option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
+package project.v1;
+
+option go_package = "spvconnect.se/api/lib/protobuf/project/v1;project";
 
 import "google/protobuf/timestamp.proto";
-import "organization.proto";
+import "organization/v1/organization.proto";
 
 service ProjectService {
    rpc GetProjects(GetProjectsRequest) returns (GetProjectsResponse);
@@ -24,7 +26,7 @@ message GetProjectRequest {
 
 message GetProjectResponse {
    ProjectModel project = 1;
-   OrganizationModel organization = 2;
+   organization.v1.OrganizationModel organization = 2;
 }
 
 /// --- DATA TYPES --- ///

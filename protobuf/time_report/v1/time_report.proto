@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package time_report.v1;
+
+option go_package = "spvconnect.se/api/lib/protobuf/time_report/v1;time_report";
+
+import "google/protobuf/timestamp.proto";
+import "profile/v1/profile.proto";
+import "project/v1/project.proto";
+
+service TimeReportService {
+  rpc GetTimeReports(GetTimeReportsRequest) returns (GetTimeReportsResponse);
+  rpc GetTimeReport(GetTimeReportRequest) returns (GetTimeReportResponse);
+  rpc CreateTimeReport(CreateTimeReportRequest) returns (CreateTimeReportResponse);
+  rpc UpdateTimeReport(UpdateTimeReportRequest) returns (UpdateTimeReportResponse);
+}
+
+message GetTimeReportsRequest {
+  optional string user_id = 1;
+}
+
+message GetTimeReportsResponse {
+  repeated TimeReportModel time_reports = 1;
+}
+
+message GetTimeReportRequest {
+  int64 id = 1;
+}
+
+message GetTimeReportResponse {
+  TimeReportModel time_report = 1;
+}
+
+message CreateTimeReportRequest {
+  TimeReportModel time_report = 1;
+}
+
+message CreateTimeReportResponse {
+  TimeReportModel time_report = 1;
+}
+
+message UpdateTimeReportRequest {
+  TimeReportModel time_report = 1;
+}
+
+message UpdateTimeReportResponse {
+  TimeReportModel time_report = 1;
+}
+
+/// --- DATA TYPES --- ///
+
+message TimeReportModel {
+  int64 id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  optional google.protobuf.Timestamp updated_at = 3;
+  optional google.protobuf.Timestamp deleted_at = 4;
+  optional profile.v1.ProfileModel created_by = 5;
+  optional project.v1.ProjectModel project = 6;
+  optional string activity_id = 7;
+  optional string description = 8;
+  optional google.protobuf.Timestamp start_date = 9;
+  optional google.protobuf.Timestamp end_date = 10;
+}
+
+enum TimeReportStatus {
+  TIME_REPORT_STATUS_UNSPECIFIED = 0;
+  TIME_REPORT_STATUS_DRAFT = 1;
+  TIME_REPORT_STATUS_PENDING = 2;
+  TIME_REPORT_STATUS_APPROVED = 3;
+  TIME_REPORT_STATUS_REJECTED = 4;
+}
+
+enum TimeReportType {
+  TIME_REPORT_TYPE_UNSPECIFIED = 0;
+  TIME_REPORT_TYPE_REGULAR = 1;
+  TIME_REPORT_TYPE_OVERTIME = 2;
+  TIME_REPORT_TYPE_VACATION = 3;
+  TIME_REPORT_TYPE_SICK_LEAVE = 4;
+}

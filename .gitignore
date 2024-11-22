@@ -20,3 +20,6 @@
 
 # Mac related
 .DS_Store
+
+# Ignore generated Protobuf files
+gen/

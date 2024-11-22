@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package activity.v1;
+
+option go_package = "spvconnect.se/api/lib/protobuf/activity/v1;activity";
+
+import "google/protobuf/timestamp.proto";
+import "profile/v1/profile.proto";
+
+service ActivityService {
+  rpc GetActivities(GetActivitiesRequest) returns (GetActivitiesResponse);
+  rpc MarkActivitiesAsRead(MarkActivitiesAsReadRequest) returns (MarkActivitiesAsReadResponse);
+}
+
+message GetActivitiesRequest {
+  optional string user_id = 1;
+}
+
+message GetActivitiesResponse {
+  repeated ActivityModel activities = 1;
+}
+
+message MarkActivitiesAsReadRequest {
+  repeated int64 activity_ids = 1;
+}
+
+message MarkActivitiesAsReadResponse {
+  optional string message = 1;
+}
+
+message ActivityModel {
+  int64 id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  ActivityType type = 3;
+  int64 type_id = 4;
+  optional profile.v1.ProfileModel created_by = 5;
+  bool is_acknowledged = 6;
+  bool is_read = 7;
+}
+
+enum ActivityType {
+  ACTIVITY_TYPE_UNSPECIFIED = 0;
+  ACTIVITY_TYPE_TIME_REPORT = 1;
+}

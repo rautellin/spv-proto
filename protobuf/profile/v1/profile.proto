@@ -1,10 +1,12 @@
 syntax = "proto3";
 
-option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
+package profile.v1;
+
+option go_package = "spvconnect.se/api/lib/protobuf/profile/v1;profile";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";
-import "organization.proto";
+import "organization/v1/organization.proto";
 
 service ProfileService {
   rpc GetProfile(GetProfileRequest) returns (GetProfileResponse);
@@ -37,7 +39,7 @@ message ProfileModel {
   optional string phone = 5;
   bool is_super_user = 6;
   RoleType role = 7;
-  repeated OrganizationModel organizations = 8;
+  repeated organization.v1.OrganizationModel organizations = 8;
 }
 
 enum RoleType {
