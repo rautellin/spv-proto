@@ -32,7 +32,7 @@ message UpdateProfileResponse {
 /// --- DATA TYPES --- ///
 
 message ProfileModel {
-  string id = 1;
+  int64 id = 1;
   google.protobuf.Timestamp created_at = 2;
   optional string name = 3;
   string email = 4;

@@ -9,17 +9,17 @@ import "profile/v1/profile.proto";
 import "project/v1/project.proto";
 
 service TimeReportService {
-  rpc GetTimeReports(GetTimeReportsRequest) returns (GetTimeReportsResponse);
+  rpc GetTimeReportsByUserId(GetTimeReportsByUserIdRequest) returns (GetTimeReportsByUserIdResponse);
   rpc GetTimeReport(GetTimeReportRequest) returns (GetTimeReportResponse);
   rpc CreateTimeReport(CreateTimeReportRequest) returns (CreateTimeReportResponse);
   rpc UpdateTimeReport(UpdateTimeReportRequest) returns (UpdateTimeReportResponse);
 }
 
-message GetTimeReportsRequest {
-  optional string user_id = 1;
+message GetTimeReportsByUserIdRequest {
+  int64 user_id = 1;
 }
 
-message GetTimeReportsResponse {
+message GetTimeReportsByUserIdResponse {
   repeated TimeReportModel time_reports = 1;
 }
 
@@ -32,7 +32,10 @@ message GetTimeReportResponse {
 }
 
 message CreateTimeReportRequest {
-  TimeReportModel time_report = 1;
+  google.protobuf.Timestamp start_date = 1;
+  float hours = 2;
+  int64 project_id = 3;
+  optional string comment = 4;
 }
 
 message CreateTimeReportResponse {
@@ -54,12 +57,11 @@ message TimeReportModel {
   google.protobuf.Timestamp created_at = 2;
   optional google.protobuf.Timestamp updated_at = 3;
   optional google.protobuf.Timestamp deleted_at = 4;
-  optional profile.v1.ProfileModel created_by = 5;
-  optional project.v1.ProjectModel project = 6;
-  optional string activity_id = 7;
-  optional string description = 8;
-  optional google.protobuf.Timestamp start_date = 9;
-  optional google.protobuf.Timestamp end_date = 10;
+  google.protobuf.Timestamp start_date = 5;
+  float hours = 6;
+  optional profile.v1.ProfileModel created_by = 7;
+  project.v1.ProjectModel project = 8;
+  optional string comment = 9;
 }
 
 enum TimeReportStatus {
