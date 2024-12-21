@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package assignment.v1;
+
+option go_package = "spvconnect.se/api/lib/protobuf/assignment/v1;assignment";
+
+import "google/protobuf/timestamp.proto";
+import "organization/v1/organization.proto";
+import "project/v1/project.proto";
+
+service AssignmentService {
+   rpc GetAssignmentsByUserId(GetAssignmentsByUserIdRequest) returns (GetAssignmentsByUserIdResponse);
+}
+
+message GetAssignmentsByUserIdRequest {
+   int64 user_id = 1;
+}
+
+message GetAssignmentsByUserIdResponse {
+   repeated AssignmentModel assignments = 1;
+}
+
+/// --- DATA TYPES --- ///
+
+message AssignmentModel {
+   int64 id = 1;
+   google.protobuf.Timestamp created_at = 2;
+   optional google.protobuf.Timestamp updated_at = 3;
+   optional google.protobuf.Timestamp deleted_at = 4;
+   string address = 5;
+   optional string comment = 6;
+   float latitude = 7;
+   float longitude = 8;
+   optional google.protobuf.Timestamp deadline = 9;
+   optional google.protobuf.Timestamp completed_at = 10;
+   project.v1.ProjectModel project = 11;
+   organization.v1.OrganizationModel organization = 12;
+}
+
+
