@@ -26,7 +26,6 @@ message GetProjectRequest {
 
 message GetProjectResponse {
    ProjectModel project = 1;
-   organization.v1.OrganizationModel organization = 2;
 }
 
 /// --- DATA TYPES --- ///
@@ -42,6 +41,7 @@ message ProjectModel {
    optional float longitude = 8;
    optional google.protobuf.Timestamp start_date = 9;
    optional google.protobuf.Timestamp end_date = 10;
+   organization.v1.OrganizationModel organization = 11;
 }
 
 

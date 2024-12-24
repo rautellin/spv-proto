@@ -14,6 +14,7 @@ service AssignmentService {
 
 message GetAssignmentsByUserIdRequest {
    int64 user_id = 1;
+   optional bool completed = 2;
 }
 
 message GetAssignmentsByUserIdResponse {
