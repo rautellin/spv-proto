@@ -37,8 +37,8 @@ message ProjectModel {
    optional google.protobuf.Timestamp deleted_at = 4;
    optional string name = 5;
    optional string description = 6;
-   optional float latitude = 7;
-   optional float longitude = 8;
+   optional double latitude = 7;
+   optional double longitude = 8;
    optional google.protobuf.Timestamp start_date = 9;
    optional google.protobuf.Timestamp end_date = 10;
    organization.v1.OrganizationModel organization = 11;
