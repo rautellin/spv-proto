@@ -30,9 +30,9 @@ message AssignmentModel {
    optional google.protobuf.Timestamp deleted_at = 4;
    string address = 5;
    optional string comment = 6;
-   float latitude = 7;
-   float longitude = 8;
-   optional google.protobuf.Timestamp deadline = 9;
+   double latitude = 7;
+   double longitude = 8;
+   optional google.protobuf.Timestamp scheduled_at = 9;
    optional google.protobuf.Timestamp completed_at = 10;
    project.v1.ProjectModel project = 11;
    organization.v1.OrganizationModel organization = 12;
