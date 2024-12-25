@@ -6,6 +6,8 @@ option go_package = "spvconnect.se/api/lib/protobuf/activity/v1;activity";
 
 import "google/protobuf/timestamp.proto";
 import "profile/v1/profile.proto";
+import "assignment/v1/assignment.proto";
+import "time_report/v1/time_report.proto";
 
 service ActivityService {
   rpc GetActivities(GetActivitiesRequest) returns (GetActivitiesResponse);
@@ -31,14 +33,18 @@ message MarkActivitiesAsReadResponse {
 message ActivityModel {
   int64 id = 1;
   google.protobuf.Timestamp created_at = 2;
-  ActivityType type = 3;
-  int64 type_id = 4;
-  optional profile.v1.ProfileModel created_by = 5;
-  bool is_acknowledged = 6;
-  bool is_read = 7;
+  optional profile.v1.ProfileModel created_by = 3;
+  bool is_acknowledged = 4;
+  bool is_read = 5;
+  ActivityType type = 6;
+  oneof activity {
+    time_report.v1.TimeReportModel time_report = 7;
+    assignment.v1.AssignmentModel assignment = 8;
+  }
 }
 
 enum ActivityType {
   ACTIVITY_TYPE_UNSPECIFIED = 0;
   ACTIVITY_TYPE_TIME_REPORT = 1;
+  ACTIVITY_TYPE_ASSIGNMENT = 2;
 }
