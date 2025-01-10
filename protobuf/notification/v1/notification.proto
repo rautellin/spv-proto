@@ -1,0 +1,21 @@
+syntax = "proto3";
+package notification.v1;
+option go_package = "spvconnect.se/api/lib/protobuf/notification/v1;notification";
+
+service NotificationService {
+  rpc SaveFCMToken(SaveFCMTokenRequest) returns (SaveFCMTokenResponse);
+  rpc DeleteFCMToken(DeleteFCMTokenRequest) returns (DeleteFCMTokenResponse);
+}
+
+message SaveFCMTokenRequest {
+  string fcm_token = 1;
+}
+
+message SaveFCMTokenResponse {
+}
+
+message DeleteFCMTokenRequest {
+}
+
+message DeleteFCMTokenResponse {
+}

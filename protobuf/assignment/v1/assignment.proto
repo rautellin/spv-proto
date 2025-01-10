@@ -5,7 +5,6 @@ package assignment.v1;
 option go_package = "spvconnect.se/api/lib/protobuf/assignment/v1;assignment";
 
 import "google/protobuf/timestamp.proto";
-import "organization/v1/organization.proto";
 import "project/v1/project.proto";
 
 service AssignmentService {
@@ -35,7 +34,6 @@ message AssignmentModel {
    optional google.protobuf.Timestamp scheduled_at = 9;
    optional google.protobuf.Timestamp completed_at = 10;
    project.v1.ProjectModel project = 11;
-   organization.v1.OrganizationModel organization = 12;
 }
 
 

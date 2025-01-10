@@ -12,6 +12,7 @@ import "time_report/v1/time_report.proto";
 service ActivityService {
   rpc GetActivities(GetActivitiesRequest) returns (GetActivitiesResponse);
   rpc MarkActivitiesAsRead(MarkActivitiesAsReadRequest) returns (MarkActivitiesAsReadResponse);
+  rpc GetUnreadActivitiesCount(GetUnreadActivitiesCountRequest) returns (GetUnreadActivitiesCountResponse);
 }
 
 message GetActivitiesRequest {
@@ -23,11 +24,16 @@ message GetActivitiesResponse {
 }
 
 message MarkActivitiesAsReadRequest {
-  repeated int64 activity_ids = 1;
 }
 
 message MarkActivitiesAsReadResponse {
-  optional string message = 1;
+}
+
+message GetUnreadActivitiesCountRequest {
+}
+
+message GetUnreadActivitiesCountResponse {
+  int64 count = 1;
 }
 
 message ActivityModel {
