@@ -8,22 +8,21 @@ import "google/protobuf/timestamp.proto";
 import "assignment/v1/assignment.proto";
 
 service TimeReportService {
-  rpc GetTimeReportsByUserId(GetTimeReportsByUserIdRequest) returns (GetTimeReportsByUserIdResponse);
+  rpc GetTimeReports(GetTimeReportsRequest) returns (GetTimeReportsResponse);
   rpc GetTimeReport(GetTimeReportRequest) returns (GetTimeReportResponse);
   rpc CreateTimeReport(CreateTimeReportRequest) returns (CreateTimeReportResponse);
   rpc UpdateTimeReport(UpdateTimeReportRequest) returns (UpdateTimeReportResponse);
 }
 
-message GetTimeReportsByUserIdRequest {
-  int64 user_id = 1;
+message GetTimeReportsRequest {
 }
 
-message GetTimeReportsByUserIdResponse {
+message GetTimeReportsResponse {
   repeated TimeReportModel time_reports = 1;
 }
 
 message GetTimeReportRequest {
-  int64 id = 1;
+  string id = 1;
 }
 
 message GetTimeReportResponse {
@@ -31,11 +30,11 @@ message GetTimeReportResponse {
 }
 
 message CreateTimeReportRequest {
-  google.protobuf.Timestamp start_date = 1;
-  google.protobuf.Timestamp end_date = 2;
-  int32 break_length = 3;
+  google.protobuf.Timestamp start_time = 1;
+  google.protobuf.Timestamp end_time = 2;
+  int32 break_minutes = 3;
   optional string comment = 4;
-  int64 assignment_id = 5;
+  string assignment_id = 5;
 }
 
 message CreateTimeReportResponse {
@@ -50,32 +49,14 @@ message UpdateTimeReportResponse {
   TimeReportModel time_report = 1;
 }
 
-/// --- DATA TYPES --- ///
-
 message TimeReportModel {
-  int64 id = 1;
+  string id = 1;
   google.protobuf.Timestamp created_at = 2;
   optional google.protobuf.Timestamp updated_at = 3;
-  optional google.protobuf.Timestamp deleted_at = 4;
-  google.protobuf.Timestamp started_at = 5;
-  google.protobuf.Timestamp ended_at = 6;
-  int32 break_length = 7;
-  optional string comment = 8;
-  assignment.v1.AssignmentModel assignment = 9;
+  optional string comment = 4;
+  google.protobuf.Timestamp start_time = 5;
+  google.protobuf.Timestamp end_time = 6;
+  int32 break_minutes = 7;
+  assignment.v1.AssignmentModel assignment = 8;
 }
 
-enum TimeReportStatus {
-  TIME_REPORT_STATUS_UNSPECIFIED = 0;
-  TIME_REPORT_STATUS_DRAFT = 1;
-  TIME_REPORT_STATUS_PENDING = 2;
-  TIME_REPORT_STATUS_APPROVED = 3;
-  TIME_REPORT_STATUS_REJECTED = 4;
-}
-
-enum TimeReportType {
-  TIME_REPORT_TYPE_UNSPECIFIED = 0;
-  TIME_REPORT_TYPE_REGULAR = 1;
-  TIME_REPORT_TYPE_OVERTIME = 2;
-  TIME_REPORT_TYPE_VACATION = 3;
-  TIME_REPORT_TYPE_SICK_LEAVE = 4;
-}

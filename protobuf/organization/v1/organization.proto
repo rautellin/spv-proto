@@ -9,16 +9,13 @@ import "google/protobuf/timestamp.proto";
 /// --- DATA TYPES --- ///
 
 message OrganizationModel {
-   int64 id = 1;
+   string id = 1;
    google.protobuf.Timestamp created_at = 2;
-   string name = 3;
-   string org_number = 4;
-   optional string address = 5;
-   optional string postal_code = 6;
-   optional string city = 7;
-   optional string county = 8;
-   optional string phone = 9;
-   optional string email = 10;
+   optional google.protobuf.Timestamp updated_at = 3;
+   string name = 4;
+   optional string org_number = 5;
+   optional string address = 6;
+   optional string postal_code = 7;
+   optional string city = 8;
+   optional string bl_id = 9; // Björn Lundén ID
 }
-
-

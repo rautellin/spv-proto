@@ -16,7 +16,6 @@ service ActivityService {
 }
 
 message GetActivitiesRequest {
-  optional string user_id = 1;
 }
 
 message GetActivitiesResponse {
@@ -24,6 +23,7 @@ message GetActivitiesResponse {
 }
 
 message MarkActivitiesAsReadRequest {
+  repeated string activity_ids = 1;
 }
 
 message MarkActivitiesAsReadResponse {
@@ -37,9 +37,9 @@ message GetUnreadActivitiesCountResponse {
 }
 
 message ActivityModel {
-  int64 id = 1;
+  string id = 1;
   google.protobuf.Timestamp created_at = 2;
-  optional profile.v1.ProfileModel created_by = 3;
+  profile.v1.ProfileModel created_by = 3;
   bool is_acknowledged = 4;
   bool is_read = 5;
   ActivityType type = 6;
@@ -51,6 +51,12 @@ message ActivityModel {
 
 enum ActivityType {
   ACTIVITY_TYPE_UNSPECIFIED = 0;
-  ACTIVITY_TYPE_TIME_REPORT = 1;
-  ACTIVITY_TYPE_ASSIGNMENT = 2;
+  ACTIVITY_TYPE_TIME_REPORT_CREATED = 1;
+  ACTIVITY_TYPE_TIME_REPORT_UPDATED = 2;
+  ACTIVITY_TYPE_TIME_REPORT_DELETED = 3;
+  ACTIVITY_TYPE_ASSIGNMENT_ASSIGNED = 4;
+  ACTIVITY_TYPE_ASSIGNMENT_UNASSIGNED = 5;
+  ACTIVITY_TYPE_ASSIGNMENT_DELETED = 6;
+  ACTIVITY_TYPE_ASSIGNMENT_UPDATED = 7;
+  ACTIVITY_TYPE_ASSIGNMENT_READY_FOR_REVIEW = 8;
 }

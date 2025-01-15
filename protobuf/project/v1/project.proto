@@ -1,3 +1,17 @@
+// Copyright 2024 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
 syntax = "proto3";
 
 package project.v1;
@@ -7,42 +21,38 @@ option go_package = "spvconnect.se/api/lib/protobuf/project/v1;project";
 import "google/protobuf/timestamp.proto";
 import "organization/v1/organization.proto";
 
-service ProjectService {
-   rpc GetProjects(GetProjectsRequest) returns (GetProjectsResponse);
-    rpc GetProject(GetProjectRequest) returns (GetProjectResponse);
-}
-
-message GetProjectsRequest {
-   optional string user_id = 1;
-}
-
-message GetProjectsResponse {
-   repeated ProjectModel projects = 1;
-}
-
-message GetProjectRequest {
-   int64 id = 1;
-}
-
-message GetProjectResponse {
-   ProjectModel project = 1;
+// From [https://github.com/googleapis/googleapis/blob/master/google/type/date.proto]
+// Represents a whole or partial calendar date, such as a birthday. The time of
+// day and time zone are either specified elsewhere or are insignificant. The
+// date is relative to the Gregorian Calendar. This can represent one of the
+// following:
+//
+// * A full date, with non-zero year, month, and day values
+// * A month and day value, with a zero year, such as an anniversary
+// * A year on its own, with zero month and day values
+// * A year and month value, with a zero day, such as a credit card expiration
+// date
+//
+// Related types are [google.type.TimeOfDay][google.type.TimeOfDay] and
+// `google.protobuf.Timestamp`.
+message Date {
+   int32 year = 1;  // Year of the date. Must be from 1 to 9999, or 0 for no year.
+   int32 month = 2; // Month of the year. Must be from 1 to 12, or 0 for no month.
+   int32 day = 3;   // Day of the month. Must be from 1 to 31, or 0 for no day.
 }
 
 /// --- DATA TYPES --- ///
 
 message ProjectModel {
-   int64 id = 1;
+   string id = 1;
    google.protobuf.Timestamp created_at = 2;
    optional google.protobuf.Timestamp updated_at = 3;
-   optional google.protobuf.Timestamp deleted_at = 4;
-   optional string name = 5;
-   optional string description = 6;
-   optional double latitude = 7;
-   optional double longitude = 8;
-   optional google.protobuf.Timestamp start_date = 9;
-   optional google.protobuf.Timestamp end_date = 10;
+   optional string name = 4;
+   optional string address = 5;
+   optional double latitude = 6;
+   optional double longitude = 7;
+   Date start_date = 8;
+   optional Date end_date = 9;
+   optional string littra_id = 10;
    organization.v1.OrganizationModel organization = 11;
 }
-
-
-

@@ -8,32 +8,28 @@ import "google/protobuf/timestamp.proto";
 import "project/v1/project.proto";
 
 service AssignmentService {
-   rpc GetAssignmentsByUserId(GetAssignmentsByUserIdRequest) returns (GetAssignmentsByUserIdResponse);
+   rpc GetAssignments(GetAssignmentsRequest) returns (GetAssignmentsResponse);
 }
 
-message GetAssignmentsByUserIdRequest {
-   int64 user_id = 1;
-   optional bool completed = 2;
+message GetAssignmentsRequest {
+   optional bool completed = 1;
 }
 
-message GetAssignmentsByUserIdResponse {
+message GetAssignmentsResponse {
    repeated AssignmentModel assignments = 1;
 }
 
 /// --- DATA TYPES --- ///
 
 message AssignmentModel {
-   int64 id = 1;
+   string id = 1;
    google.protobuf.Timestamp created_at = 2;
    optional google.protobuf.Timestamp updated_at = 3;
-   optional google.protobuf.Timestamp deleted_at = 4;
-   string address = 5;
-   optional string comment = 6;
-   double latitude = 7;
-   double longitude = 8;
-   optional google.protobuf.Timestamp scheduled_at = 9;
-   optional google.protobuf.Timestamp completed_at = 10;
-   project.v1.ProjectModel project = 11;
+   string address = 4;
+   optional string comment = 5;
+   double latitude = 6;
+   double longitude = 7;
+   google.protobuf.Timestamp start_time = 8;
+   optional google.protobuf.Timestamp completed_at = 9;
+   project.v1.ProjectModel project = 10;
 }
-
-
