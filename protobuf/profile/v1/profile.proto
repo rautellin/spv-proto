@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package profile.v1;
 
-option go_package = "spvconnect.se/api/lib/protobuf/profile/v1;profile";
+option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
 
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/field_mask.proto";

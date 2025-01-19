@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package activity.v1;
 
-option go_package = "spvconnect.se/api/lib/protobuf/activity/v1;activity";
+option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
 
 import "google/protobuf/timestamp.proto";
 import "profile/v1/profile.proto";

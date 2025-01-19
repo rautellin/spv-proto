@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package organization.v1;
 
-option go_package = "spvconnect.se/api/lib/protobuf/organization/v1;organization";
+option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
 
 import "google/protobuf/timestamp.proto";
 
