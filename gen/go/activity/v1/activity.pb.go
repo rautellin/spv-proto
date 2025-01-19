@@ -7,6 +7,9 @@
 package proto
 
 import (
+	_go "github.com/rautellin/spv-proto/gen/go"
+	v11 "github.com/rautellin/spv-proto/gen/go/assignment/v1"
+	v1 "github.com/rautellin/spv-proto/gen/go/profile/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -350,7 +353,7 @@ type ActivityModel struct {
 
 	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	CreatedAt      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	CreatedBy      *ProfileModel          `protobuf:"bytes,3,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
+	CreatedBy      *v1.ProfileModel       `protobuf:"bytes,3,opt,name=created_by,json=createdBy,proto3" json:"created_by,omitempty"`
 	IsAcknowledged bool                   `protobuf:"varint,4,opt,name=is_acknowledged,json=isAcknowledged,proto3" json:"is_acknowledged,omitempty"`
 	IsRead         bool                   `protobuf:"varint,5,opt,name=is_read,json=isRead,proto3" json:"is_read,omitempty"`
 	Type           ActivityType           `protobuf:"varint,6,opt,name=type,proto3,enum=activity.v1.ActivityType" json:"type,omitempty"`
@@ -407,7 +410,7 @@ func (x *ActivityModel) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-func (x *ActivityModel) GetCreatedBy() *ProfileModel {
+func (x *ActivityModel) GetCreatedBy() *v1.ProfileModel {
 	if x != nil {
 		return x.CreatedBy
 	}
@@ -442,14 +445,14 @@ func (m *ActivityModel) GetActivity() isActivityModel_Activity {
 	return nil
 }
 
-func (x *ActivityModel) GetTimeReport() *TimeReportModel {
+func (x *ActivityModel) GetTimeReport() *_go.TimeReportModel {
 	if x, ok := x.GetActivity().(*ActivityModel_TimeReport); ok {
 		return x.TimeReport
 	}
 	return nil
 }
 
-func (x *ActivityModel) GetAssignment() *AssignmentModel {
+func (x *ActivityModel) GetAssignment() *v11.AssignmentModel {
 	if x, ok := x.GetActivity().(*ActivityModel_Assignment); ok {
 		return x.Assignment
 	}
@@ -461,11 +464,11 @@ type isActivityModel_Activity interface {
 }
 
 type ActivityModel_TimeReport struct {
-	TimeReport *TimeReportModel `protobuf:"bytes,7,opt,name=time_report,json=timeReport,proto3,oneof"`
+	TimeReport *_go.TimeReportModel `protobuf:"bytes,7,opt,name=time_report,json=timeReport,proto3,oneof"`
 }
 
 type ActivityModel_Assignment struct {
-	Assignment *AssignmentModel `protobuf:"bytes,8,opt,name=assignment,proto3,oneof"`
+	Assignment *v11.AssignmentModel `protobuf:"bytes,8,opt,name=assignment,proto3,oneof"`
 }
 
 func (*ActivityModel_TimeReport) isActivityModel_Activity() {}
@@ -573,11 +576,11 @@ var file_activity_v1_activity_proto_rawDesc = []byte{
 	0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2d,
 	0x2e, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74,
 	0x55, 0x6e, 0x72, 0x65, 0x61, 0x64, 0x41, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x69, 0x65, 0x73,
-	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x2d, 0x5a,
-	0x2b, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x72, 0x61, 0x75, 0x74,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x39, 0x5a,
+	0x37, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x72, 0x61, 0x75, 0x74,
 	0x65, 0x6c, 0x6c, 0x69, 0x6e, 0x2f, 0x73, 0x70, 0x76, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
-	0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x3b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x67, 0x65, 0x6e, 0x2f, 0x67, 0x6f, 0x2f, 0x61, 0x63, 0x74, 0x69, 0x76, 0x69, 0x74, 0x79, 0x2f,
+	0x76, 0x31, 0x3b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -604,9 +607,9 @@ var file_activity_v1_activity_proto_goTypes = []interface{}{
 	(*GetUnreadActivitiesCountResponse)(nil), // 6: activity.v1.GetUnreadActivitiesCountResponse
 	(*ActivityModel)(nil),                    // 7: activity.v1.ActivityModel
 	(*timestamppb.Timestamp)(nil),            // 8: google.protobuf.Timestamp
-	(*ProfileModel)(nil),                     // 9: profile.v1.ProfileModel
-	(*TimeReportModel)(nil),                  // 10: time_report.v1.TimeReportModel
-	(*AssignmentModel)(nil),                  // 11: assignment.v1.AssignmentModel
+	(*v1.ProfileModel)(nil),                  // 9: profile.v1.ProfileModel
+	(*_go.TimeReportModel)(nil),              // 10: time_report.v1.TimeReportModel
+	(*v11.AssignmentModel)(nil),              // 11: assignment.v1.AssignmentModel
 }
 var file_activity_v1_activity_proto_depIdxs = []int32{
 	7,  // 0: activity.v1.GetActivitiesResponse.activities:type_name -> activity.v1.ActivityModel
@@ -633,9 +636,6 @@ func file_activity_v1_activity_proto_init() {
 	if File_activity_v1_activity_proto != nil {
 		return
 	}
-	file_profile_v1_profile_proto_init()
-	file_assignment_v1_assignment_proto_init()
-	file_time_report_v1_time_report_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_activity_v1_activity_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetActivitiesRequest); i {

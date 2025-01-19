@@ -7,6 +7,7 @@
 package proto
 
 import (
+	v1 "github.com/rautellin/spv-proto/gen/go/organization/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	fieldmaskpb "google.golang.org/protobuf/types/known/fieldmaskpb"
@@ -269,15 +270,15 @@ type ProfileModel struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	Email         *string                `protobuf:"bytes,4,opt,name=email,proto3,oneof" json:"email,omitempty"`
-	FirstName     *string                `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
-	LastName      *string                `protobuf:"bytes,6,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
-	Phone         *string                `protobuf:"bytes,7,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
-	Role          RoleType               `protobuf:"varint,8,opt,name=role,proto3,enum=profile.v1.RoleType" json:"role,omitempty"`
-	Organizations []*OrganizationModel   `protobuf:"bytes,9,rep,name=organizations,proto3" json:"organizations,omitempty"`
+	Id            string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreatedAt     *timestamppb.Timestamp  `protobuf:"bytes,2,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     *timestamppb.Timestamp  `protobuf:"bytes,3,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Email         *string                 `protobuf:"bytes,4,opt,name=email,proto3,oneof" json:"email,omitempty"`
+	FirstName     *string                 `protobuf:"bytes,5,opt,name=first_name,json=firstName,proto3,oneof" json:"first_name,omitempty"`
+	LastName      *string                 `protobuf:"bytes,6,opt,name=last_name,json=lastName,proto3,oneof" json:"last_name,omitempty"`
+	Phone         *string                 `protobuf:"bytes,7,opt,name=phone,proto3,oneof" json:"phone,omitempty"`
+	Role          RoleType                `protobuf:"varint,8,opt,name=role,proto3,enum=profile.v1.RoleType" json:"role,omitempty"`
+	Organizations []*v1.OrganizationModel `protobuf:"bytes,9,rep,name=organizations,proto3" json:"organizations,omitempty"`
 }
 
 func (x *ProfileModel) Reset() {
@@ -368,7 +369,7 @@ func (x *ProfileModel) GetRole() RoleType {
 	return RoleType_ROLE_TYPE_UNSPECIFIED
 }
 
-func (x *ProfileModel) GetOrganizations() []*OrganizationModel {
+func (x *ProfileModel) GetOrganizations() []*v1.OrganizationModel {
 	if x != nil {
 		return x.Organizations
 	}
@@ -453,10 +454,11 @@ var file_profile_v1_profile_proto_rawDesc = []byte{
 	0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x65,
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2e,
 	0x76, 0x31, 0x2e, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
-	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x2d, 0x5a, 0x2b, 0x67, 0x69, 0x74, 0x68,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x38, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68,
 	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x72, 0x61, 0x75, 0x74, 0x65, 0x6c, 0x6c, 0x69, 0x6e,
 	0x2f, 0x73, 0x70, 0x76, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x67, 0x65, 0x6e, 0x2f, 0x67,
-	0x6f, 0x3b, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x2f, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x2f, 0x76, 0x31, 0x3b, 0x70, 0x72, 0x6f,
+	0x74, 0x6f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -482,7 +484,7 @@ var file_profile_v1_profile_proto_goTypes = []interface{}{
 	(*ProfileModel)(nil),          // 5: profile.v1.ProfileModel
 	(*fieldmaskpb.FieldMask)(nil), // 6: google.protobuf.FieldMask
 	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
-	(*OrganizationModel)(nil),     // 8: organization.v1.OrganizationModel
+	(*v1.OrganizationModel)(nil),  // 8: organization.v1.OrganizationModel
 }
 var file_profile_v1_profile_proto_depIdxs = []int32{
 	5,  // 0: profile.v1.GetProfileResponse.profile:type_name -> profile.v1.ProfileModel
@@ -509,7 +511,6 @@ func file_profile_v1_profile_proto_init() {
 	if File_profile_v1_profile_proto != nil {
 		return
 	}
-	file_organization_v1_organization_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_profile_v1_profile_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetProfileRequest); i {

@@ -16,7 +16,7 @@ syntax = "proto3";
 
 package project.v1;
 
-option go_package = "github.com/rautellin/spv-proto/gen/go;proto";
+option go_package = "github.com/rautellin/spv-proto/gen/go/project/v1;proto";
 
 import "google/protobuf/timestamp.proto";
 import "organization/v1/organization.proto";

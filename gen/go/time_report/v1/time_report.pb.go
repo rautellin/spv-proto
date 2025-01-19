@@ -7,6 +7,7 @@
 package proto
 
 import (
+	v1 "github.com/rautellin/spv-proto/gen/go/assignment/v1"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -432,7 +433,7 @@ type TimeReportModel struct {
 	StartTime    *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
 	EndTime      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
 	BreakMinutes int32                  `protobuf:"varint,7,opt,name=break_minutes,json=breakMinutes,proto3" json:"break_minutes,omitempty"`
-	Assignment   *AssignmentModel       `protobuf:"bytes,8,opt,name=assignment,proto3" json:"assignment,omitempty"`
+	Assignment   *v1.AssignmentModel    `protobuf:"bytes,8,opt,name=assignment,proto3" json:"assignment,omitempty"`
 }
 
 func (x *TimeReportModel) Reset() {
@@ -516,7 +517,7 @@ func (x *TimeReportModel) GetBreakMinutes() int32 {
 	return 0
 }
 
-func (x *TimeReportModel) GetAssignment() *AssignmentModel {
+func (x *TimeReportModel) GetAssignment() *v1.AssignmentModel {
 	if x != nil {
 		return x.Assignment
 	}
@@ -666,7 +667,7 @@ var file_time_report_v1_time_report_proto_goTypes = []interface{}{
 	(*UpdateTimeReportResponse)(nil), // 7: time_report.v1.UpdateTimeReportResponse
 	(*TimeReportModel)(nil),          // 8: time_report.v1.TimeReportModel
 	(*timestamppb.Timestamp)(nil),    // 9: google.protobuf.Timestamp
-	(*AssignmentModel)(nil),          // 10: assignment.v1.AssignmentModel
+	(*v1.AssignmentModel)(nil),       // 10: assignment.v1.AssignmentModel
 }
 var file_time_report_v1_time_report_proto_depIdxs = []int32{
 	8,  // 0: time_report.v1.GetTimeReportsResponse.time_reports:type_name -> time_report.v1.TimeReportModel
@@ -701,7 +702,6 @@ func file_time_report_v1_time_report_proto_init() {
 	if File_time_report_v1_time_report_proto != nil {
 		return
 	}
-	file_assignment_v1_assignment_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_time_report_v1_time_report_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetTimeReportsRequest); i {
