@@ -6,9 +6,11 @@ option go_package = "github.com/rautellin/spv-proto/gen/go/assignment/v1;proto";
 
 import "google/protobuf/timestamp.proto";
 import "project/v1/project.proto";
+import "profile/v1/profile.proto";
 
 service AssignmentService {
    rpc GetAssignments(GetAssignmentsRequest) returns (GetAssignmentsResponse);
+   rpc GetAssignment(GetAssignmentRequest) returns (GetAssignmentResponse);
 }
 
 message GetAssignmentsRequest {
@@ -17,6 +19,15 @@ message GetAssignmentsRequest {
 
 message GetAssignmentsResponse {
    repeated AssignmentModel assignments = 1;
+}
+
+message GetAssignmentRequest {
+   string id = 1;
+}
+
+message GetAssignmentResponse {
+   AssignmentModel assignment = 1;
+   repeated profile.v1.ProfileModel coworkers = 2;
 }
 
 /// --- DATA TYPES --- ///
@@ -31,5 +42,15 @@ message AssignmentModel {
    double longitude = 7;
    google.protobuf.Timestamp start_time = 8;
    optional google.protobuf.Timestamp completed_at = 9;
-   project.v1.ProjectModel project = 10;
+   AssignmentRole role = 10;
+   project.v1.ProjectModel project = 11;
+}
+
+/// --- ENUMS --- ///
+
+enum AssignmentRole {
+   ASSIGNMENT_ROLE_UNSPECIFIED = 0;
+    ASSIGNMENT_ROLE_TEAM_LEADER = 1;
+    ASSIGNMENT_ROLE_GUARD = 2;
+    ASSIGNMENT_ROLE_DRIVER = 3;
 }
