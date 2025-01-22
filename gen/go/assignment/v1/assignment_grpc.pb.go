@@ -23,6 +23,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AssignmentServiceClient interface {
 	GetAssignments(ctx context.Context, in *GetAssignmentsRequest, opts ...grpc.CallOption) (*GetAssignmentsResponse, error)
+	GetAssignment(ctx context.Context, in *GetAssignmentRequest, opts ...grpc.CallOption) (*GetAssignmentResponse, error)
 }
 
 type assignmentServiceClient struct {
@@ -42,11 +43,21 @@ func (c *assignmentServiceClient) GetAssignments(ctx context.Context, in *GetAss
 	return out, nil
 }
 
+func (c *assignmentServiceClient) GetAssignment(ctx context.Context, in *GetAssignmentRequest, opts ...grpc.CallOption) (*GetAssignmentResponse, error) {
+	out := new(GetAssignmentResponse)
+	err := c.cc.Invoke(ctx, "/assignment.v1.AssignmentService/GetAssignment", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AssignmentServiceServer is the server API for AssignmentService service.
 // All implementations must embed UnimplementedAssignmentServiceServer
 // for forward compatibility
 type AssignmentServiceServer interface {
 	GetAssignments(context.Context, *GetAssignmentsRequest) (*GetAssignmentsResponse, error)
+	GetAssignment(context.Context, *GetAssignmentRequest) (*GetAssignmentResponse, error)
 	mustEmbedUnimplementedAssignmentServiceServer()
 }
 
@@ -56,6 +67,9 @@ type UnimplementedAssignmentServiceServer struct {
 
 func (UnimplementedAssignmentServiceServer) GetAssignments(context.Context, *GetAssignmentsRequest) (*GetAssignmentsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAssignments not implemented")
+}
+func (UnimplementedAssignmentServiceServer) GetAssignment(context.Context, *GetAssignmentRequest) (*GetAssignmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAssignment not implemented")
 }
 func (UnimplementedAssignmentServiceServer) mustEmbedUnimplementedAssignmentServiceServer() {}
 
@@ -88,6 +102,24 @@ func _AssignmentService_GetAssignments_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AssignmentService_GetAssignment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAssignmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AssignmentServiceServer).GetAssignment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/assignment.v1.AssignmentService/GetAssignment",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AssignmentServiceServer).GetAssignment(ctx, req.(*GetAssignmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AssignmentService_ServiceDesc is the grpc.ServiceDesc for AssignmentService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -98,6 +130,10 @@ var AssignmentService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetAssignments",
 			Handler:    _AssignmentService_GetAssignments_Handler,
+		},
+		{
+			MethodName: "GetAssignment",
+			Handler:    _AssignmentService_GetAssignment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

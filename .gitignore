@@ -21,5 +21,3 @@
 # Mac related
 .DS_Store
 
-# Ignore the dependency directory and everything in it
-dependencies/

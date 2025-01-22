@@ -14,7 +14,11 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../../google/protobuf/timestamp.pb.dart' as $5;
+import '../../profile/v1/profile.pb.dart' as $1;
 import '../../project/v1/project.pb.dart' as $8;
+import 'assignment.pbenum.dart';
+
+export 'assignment.pbenum.dart';
 
 class GetAssignmentsRequest extends $pb.GeneratedMessage {
   factory GetAssignmentsRequest({
@@ -110,6 +114,116 @@ class GetAssignmentsResponse extends $pb.GeneratedMessage {
   $core.List<AssignmentModel> get assignments => $_getList(0);
 }
 
+class GetAssignmentRequest extends $pb.GeneratedMessage {
+  factory GetAssignmentRequest({
+    $core.String? id,
+  }) {
+    final $result = create();
+    if (id != null) {
+      $result.id = id;
+    }
+    return $result;
+  }
+  GetAssignmentRequest._() : super();
+  factory GetAssignmentRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetAssignmentRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetAssignmentRequest', package: const $pb.PackageName(_omitMessageNames ? '' : 'assignment.v1'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'id')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetAssignmentRequest clone() => GetAssignmentRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetAssignmentRequest copyWith(void Function(GetAssignmentRequest) updates) => super.copyWith((message) => updates(message as GetAssignmentRequest)) as GetAssignmentRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetAssignmentRequest create() => GetAssignmentRequest._();
+  GetAssignmentRequest createEmptyInstance() => create();
+  static $pb.PbList<GetAssignmentRequest> createRepeated() => $pb.PbList<GetAssignmentRequest>();
+  @$core.pragma('dart2js:noInline')
+  static GetAssignmentRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetAssignmentRequest>(create);
+  static GetAssignmentRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get id => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set id($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
+class GetAssignmentResponse extends $pb.GeneratedMessage {
+  factory GetAssignmentResponse({
+    AssignmentModel? assignment,
+    $core.Iterable<$1.ProfileModel>? coworkers,
+  }) {
+    final $result = create();
+    if (assignment != null) {
+      $result.assignment = assignment;
+    }
+    if (coworkers != null) {
+      $result.coworkers.addAll(coworkers);
+    }
+    return $result;
+  }
+  GetAssignmentResponse._() : super();
+  factory GetAssignmentResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetAssignmentResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetAssignmentResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'assignment.v1'), createEmptyInstance: create)
+    ..aOM<AssignmentModel>(1, _omitFieldNames ? '' : 'assignment', subBuilder: AssignmentModel.create)
+    ..pc<$1.ProfileModel>(2, _omitFieldNames ? '' : 'coworkers', $pb.PbFieldType.PM, subBuilder: $1.ProfileModel.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  GetAssignmentResponse clone() => GetAssignmentResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  GetAssignmentResponse copyWith(void Function(GetAssignmentResponse) updates) => super.copyWith((message) => updates(message as GetAssignmentResponse)) as GetAssignmentResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static GetAssignmentResponse create() => GetAssignmentResponse._();
+  GetAssignmentResponse createEmptyInstance() => create();
+  static $pb.PbList<GetAssignmentResponse> createRepeated() => $pb.PbList<GetAssignmentResponse>();
+  @$core.pragma('dart2js:noInline')
+  static GetAssignmentResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetAssignmentResponse>(create);
+  static GetAssignmentResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  AssignmentModel get assignment => $_getN(0);
+  @$pb.TagNumber(1)
+  set assignment(AssignmentModel v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasAssignment() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearAssignment() => clearField(1);
+  @$pb.TagNumber(1)
+  AssignmentModel ensureAssignment() => $_ensure(0);
+
+  @$pb.TagNumber(2)
+  $core.List<$1.ProfileModel> get coworkers => $_getList(1);
+}
+
 class AssignmentModel extends $pb.GeneratedMessage {
   factory AssignmentModel({
     $core.String? id,
@@ -121,6 +235,7 @@ class AssignmentModel extends $pb.GeneratedMessage {
     $core.double? longitude,
     $5.Timestamp? startTime,
     $5.Timestamp? completedAt,
+    AssignmentRole? role,
     $8.ProjectModel? project,
   }) {
     final $result = create();
@@ -151,6 +266,9 @@ class AssignmentModel extends $pb.GeneratedMessage {
     if (completedAt != null) {
       $result.completedAt = completedAt;
     }
+    if (role != null) {
+      $result.role = role;
+    }
     if (project != null) {
       $result.project = project;
     }
@@ -170,7 +288,8 @@ class AssignmentModel extends $pb.GeneratedMessage {
     ..a<$core.double>(7, _omitFieldNames ? '' : 'longitude', $pb.PbFieldType.OD)
     ..aOM<$5.Timestamp>(8, _omitFieldNames ? '' : 'startTime', subBuilder: $5.Timestamp.create)
     ..aOM<$5.Timestamp>(9, _omitFieldNames ? '' : 'completedAt', subBuilder: $5.Timestamp.create)
-    ..aOM<$8.ProjectModel>(10, _omitFieldNames ? '' : 'project', subBuilder: $8.ProjectModel.create)
+    ..e<AssignmentRole>(10, _omitFieldNames ? '' : 'role', $pb.PbFieldType.OE, defaultOrMaker: AssignmentRole.ASSIGNMENT_ROLE_UNSPECIFIED, valueOf: AssignmentRole.valueOf, enumValues: AssignmentRole.values)
+    ..aOM<$8.ProjectModel>(11, _omitFieldNames ? '' : 'project', subBuilder: $8.ProjectModel.create)
     ..hasRequiredFields = false
   ;
 
@@ -285,15 +404,24 @@ class AssignmentModel extends $pb.GeneratedMessage {
   $5.Timestamp ensureCompletedAt() => $_ensure(8);
 
   @$pb.TagNumber(10)
-  $8.ProjectModel get project => $_getN(9);
+  AssignmentRole get role => $_getN(9);
   @$pb.TagNumber(10)
-  set project($8.ProjectModel v) { setField(10, v); }
+  set role(AssignmentRole v) { setField(10, v); }
   @$pb.TagNumber(10)
-  $core.bool hasProject() => $_has(9);
+  $core.bool hasRole() => $_has(9);
   @$pb.TagNumber(10)
-  void clearProject() => clearField(10);
-  @$pb.TagNumber(10)
-  $8.ProjectModel ensureProject() => $_ensure(9);
+  void clearRole() => clearField(10);
+
+  @$pb.TagNumber(11)
+  $8.ProjectModel get project => $_getN(10);
+  @$pb.TagNumber(11)
+  set project($8.ProjectModel v) { setField(11, v); }
+  @$pb.TagNumber(11)
+  $core.bool hasProject() => $_has(10);
+  @$pb.TagNumber(11)
+  void clearProject() => clearField(11);
+  @$pb.TagNumber(11)
+  $8.ProjectModel ensureProject() => $_ensure(10);
 }
 
 

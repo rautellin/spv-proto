@@ -25,6 +25,10 @@ class AssignmentServiceClient extends $grpc.Client {
       '/assignment.v1.AssignmentService/GetAssignments',
       ($2.GetAssignmentsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $2.GetAssignmentsResponse.fromBuffer(value));
+  static final _$getAssignment = $grpc.ClientMethod<$2.GetAssignmentRequest, $2.GetAssignmentResponse>(
+      '/assignment.v1.AssignmentService/GetAssignment',
+      ($2.GetAssignmentRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $2.GetAssignmentResponse.fromBuffer(value));
 
   AssignmentServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -34,6 +38,10 @@ class AssignmentServiceClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$2.GetAssignmentsResponse> getAssignments($2.GetAssignmentsRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getAssignments, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$2.GetAssignmentResponse> getAssignment($2.GetAssignmentRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$getAssignment, request, options: options);
   }
 }
 
@@ -49,11 +57,23 @@ abstract class AssignmentServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $2.GetAssignmentsRequest.fromBuffer(value),
         ($2.GetAssignmentsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$2.GetAssignmentRequest, $2.GetAssignmentResponse>(
+        'GetAssignment',
+        getAssignment_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $2.GetAssignmentRequest.fromBuffer(value),
+        ($2.GetAssignmentResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$2.GetAssignmentsResponse> getAssignments_Pre($grpc.ServiceCall call, $async.Future<$2.GetAssignmentsRequest> request) async {
     return getAssignments(call, await request);
   }
 
+  $async.Future<$2.GetAssignmentResponse> getAssignment_Pre($grpc.ServiceCall call, $async.Future<$2.GetAssignmentRequest> request) async {
+    return getAssignment(call, await request);
+  }
+
   $async.Future<$2.GetAssignmentsResponse> getAssignments($grpc.ServiceCall call, $2.GetAssignmentsRequest request);
+  $async.Future<$2.GetAssignmentResponse> getAssignment($grpc.ServiceCall call, $2.GetAssignmentRequest request);
 }
